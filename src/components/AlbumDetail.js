@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Text, View, Image, Linking, TouchableOpacity, NavigatorIOS } from 'react-native';
+import { Text, View, Image, Linking, TouchableOpacity } from 'react-native';
  
 import Card from "./Card";
 import CardSection from "./CardSection";
@@ -34,9 +34,7 @@ class AlbumDetail extends Component {
 
         return(
             <Card>
-                <TouchableOpacity onPress={()=>{
-                    this.props.whilePress(this.props.key, this.props.album)
-                }}>
+                <TouchableOpacity onPress={()=>{this.props.whilePress(this.props.album)}}>
                      <CardSection>
                          <View style={thubnailContainerStyle} >
                              <Image style={thumbnailStyle} Image source={{ uri: thumbnail_image }} />

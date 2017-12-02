@@ -18,12 +18,11 @@ class AlbumList extends Component {
         // console.log("component will mount ")    
         axios.get('https://rallycoding.herokuapp.com/api/music_albums').then(response => this.setState({albums: response.data}));
     }
-    navigateToDetail (key, album) {
-        this.props.navigator.push({
+    navigateToDetail = (album) => {
+        this.navigator.push({
             component: AlbumDetail,
-            key: key,
-            album: album,
-            title: 'Scene '
+            passProps: { album: album },
+            title: album.title
           });
     }
 

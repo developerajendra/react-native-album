@@ -11,13 +11,13 @@ import AlbumList from "./src/components/AlbumList";
 const App = () => {
     return (
         <View style={{flex: 1}}>
-            <Header headerText={'Albums!'} />
+            {/* <Header headerText={'Albums!'} /> */}
             {/* <AlbumList></AlbumList> */}
             
             <NavigatorIOS 
                 initialRoute={{
                     component: AlbumList,
-                    title: 'My Initial Scene'
+                    title: "Albums!"
                 }} 
                 style={{flex: 1}}
             />
