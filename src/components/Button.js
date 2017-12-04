@@ -22,7 +22,7 @@ const styles = {
         flex: 1,
         alignSelf: 'stretch',
         backgroundColor: "#fff",
-        borderRadious: 5,
+        // borderRadious: 5,
         borderWidth: 1,
         borderColor: "#007aff",
         marginLeft: 5,

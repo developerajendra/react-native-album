@@ -2,22 +2,23 @@
 import React from 'react';
 import ReactNative, { View, Text, NavigatorIOS }  from 'react-native';
 
+
 //Import custom Components
-import Header from "./src/components/Header";
-import AlbumList from "./src/components/AlbumList";
- 
+import {Header, AlbumList, Auth, FlexboxPractice} from "./src/components";
+
+
 
  //Create a component
 const App = () => {
     return (
         <View style={{flex: 1}}>
-            {/* <Header headerText={'Albums!'} /> */}
+            <Header headerText={'Albums!'} />
             {/* <AlbumList></AlbumList> */}
             
             <NavigatorIOS 
                 initialRoute={{
                     component: AlbumList,
-                    title: "Albums!"
+                    title: "Album List!"
                 }} 
                 style={{flex: 1}}
             />

@@ -21,8 +21,8 @@ class AlbumList extends Component {
     navigateToDetail = (album) => {
         this.navigator.push({
             component: AlbumDetail,
-            passProps: { album: album },
-            title: album.title
+            passProps: { album: album, header: false },
+            title: album.title,
           });
     }
 
@@ -39,4 +39,4 @@ class AlbumList extends Component {
         );
     }
 }
-export default AlbumList;
+export { AlbumList };
