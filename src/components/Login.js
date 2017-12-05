@@ -31,10 +31,21 @@ class Login extends Component{
         return (
             <Card>
                 <CardSection>
-                    <Input secureTextEntry="false" placeholder="user@gmail.com" label="Email" value={this.state.email} onChangeText = {email => this.setState({email})} />
+                    <Input
+                     secureTextEntry={false}
+                      placeholder="user@gmail.com" 
+                      label="Email" value={this.state.email} 
+                      onChangeText = {email => this.setState({email})}
+                       />
                 </CardSection>
                 <CardSection>
-                    <Input secureTextEntry="true" placeholder="password" value={this.state.password} label="Password" onChangeText = {password => this.setState({password})} />
+                    <Input 
+                    secureTextEntry={true}
+                    placeholder="password" 
+                    value={this.state.password} 
+                    label="Password" 
+                    onChangeText = {password => this.setState({password})}
+                     />
                 </CardSection>
                 <Text style={style.errorText}>
                     {this.state.error}

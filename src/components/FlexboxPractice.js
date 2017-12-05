@@ -117,9 +117,9 @@ const style = {
     row5Content: {
         width:50,
         height: 50,
-         backgroundColor:'#fff',
-         margin: 10,
-         borderRadius:100,
+        backgroundColor:'#fff',
+        margin: 10,
+        borderRadius:100,
          
     }
 }

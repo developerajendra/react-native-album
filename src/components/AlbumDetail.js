@@ -49,7 +49,7 @@ class AlbumDetail extends Component {
                      </CardSection>
                  </TouchableOpacity>
                  <CardSection>
-                    <Button onPress={() => Linking.openURL(url) } />
+                    <Button buttonText="Click Me" onPress={() => Linking.openURL(url) } />
                  </CardSection>
             </Card>
          );

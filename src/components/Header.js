@@ -1,16 +1,34 @@
 //Import libraries for making a component
-import React from "react";
+import React, {Component} from "react";
 import ReactNative, { Text, View } from "react-native";
 
-//make a component
-const Header = (props) => {
-    const { viewStyle, textStyle } = styles;
+import Button from "./Button";
 
-    return (
-        <View style={viewStyle}>
-             <Text style={textStyle}>{props.headerText}</Text>
-        </View>
-    );
+//make a component
+class Header extends Component {
+    constructor(props){
+        super(props);
+        this.state ={
+            viewType: false
+        }
+    }
+    
+    //let gridType = false;
+
+    showGrildView = () =>{
+        this.props.viewType((this.state.viewType = !this.state.viewType) ? 'gridView' : 'listView');
+    }
+
+    render(){
+        const { viewStyle, textStyle ,buttonStyle} = styles;
+        
+        return (
+            <View style={viewStyle}>
+                 <Text style={textStyle}>{this.props.headerText}</Text>
+                 <Button buttonText="Grid View" onPress={this.showGrildView} style={buttonStyle}>Filter Item</Button>
+            </View>
+        );
+    }
 }
 
 const styles = { 
@@ -19,10 +37,11 @@ const styles = {
         display: 'flex',
         // flex:1,
          
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
         height: 100,
         paddingTop: 20,
+        paddingHorizontal: 10,
         flexDirection: 'row',
         shadowColor: '#000',
         shadowOffset: {width: 0, height: 2},
@@ -38,9 +57,13 @@ const styles = {
         // paddingTop: 10,
         // paddingBottom: 10
         // textAlign: 'center'
+        flex:2
+    },
+    buttonStyle : {
+        
     }
 };
 
-export  { Header };
+export { Header };
 
 //Make the component available to other parts of the app
