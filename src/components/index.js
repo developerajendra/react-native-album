@@ -7,3 +7,4 @@ export * from "./Button";
 export * from "./CardSection";
 export * from "./Login";
 export * from "./FlexboxPractice";
+export * from "./common/Spinner";

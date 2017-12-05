@@ -5,26 +5,56 @@ import firebase from "firebase";
 import CardSection from "./CardSection";
 import Button from "./Button";
 import Card from "./Card";
-import Input from "./Input";
+import Input from "./Input"; 
+import {Spinner} from  "./common";
 
 class Login extends Component{
     state = {
         email: '',
         password: '',
-        error: ''
+        error: '',
+        loading: false
     }
 
     onButtonPress(){
         const {email, password, error} = this.state;
-        this.setState({error:''});
+        this.setState({
+            error:'',
+            loading: true
+        });
         
         firebase.auth().signInWithEmailAndPassword(email,password)
-        .catch(() => {
+        .then(this.onLoginSuccess.bind(this))
+        .catch(() => { 
             firebase.auth().createUserWithEmailAndPassword(email,password)
-            .catch( (error) => {
-                this.setState({error: 'Authentication Failed.'});
-            })
+            .then(this.onLoginSuccess.bind(this))
+            .catch(this.onLoginFail.bind(this));
+        }); 
+    }
+
+    onLoginSuccess() {
+        this.setState({
+            email: '',
+            password: '',
+            loading: false
+        })
+    }
+
+    onLoginFail() {
+        this.setState({
+            error: 'Authentication Failed.',
+            loading: false
         });
+    }
+
+    renderButton(){
+        if(this.state.loading){
+            return <Spinner size="small" />
+        }
+
+        return (
+            <Button onPress={this.onButtonPress.bind(this)}> Log In </Button>
+        )
     }
 
     render(){
@@ -51,7 +81,7 @@ class Login extends Component{
                     {this.state.error}
                 </Text>
                 <CardSection style={{flex:1}}>
-                    <Button onPress={this.onButtonPress.bind(this)}> Log In </Button>
+                   {this.renderButton()}
                 </CardSection>
             </Card>
         );

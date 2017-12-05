@@ -1,41 +1,91 @@
  //Import a library to help create a component
 import React, {Component} from 'react';
 import ReactNative, { View, Text, NavigatorIOS }  from 'react-native';
-
+import firebase from "firebase";
 
 //Import custom Components
 import {Header, AlbumList, Auth, FlexboxPractice} from "./src/components";
 
-
+import {Spinner} from "./src/components/common";
 
  //Create a component
  class App extends Component{
      constructor(props){
         super(props);
         this.state = {
-            listViewType:''
+            listViewType:'',
+            isUserLoggedIn: null
         }
      }
 
      listViewType = (type)=>{
-        
         this.setState({listViewType: type});
-        console.log("view type...",this.state); 
+     }
+
+     componentWillMount(){
+        firebase.initializeApp({
+            apiKey: "AIzaSyAUyzNmW8UZ40aCAyCkLqMntRzQ9pDO2Kk",
+            authDomain: "auth-f76a9.firebaseapp.com",
+            databaseURL: "https://auth-f76a9.firebaseio.com",
+            projectId: "auth-f76a9",
+            storageBucket: "auth-f76a9.appspot.com",
+            messagingSenderId: "1052176923438"
+          });
+
+          firebase.auth().onAuthStateChanged((user)=>{
+              user ? this.setState({isUserLoggedIn: true}) : this.setState({isuser: false});
+          })
+    }
+
+ 
+     renderView(){
+         console.log("user state",this.state)
+
+         if(this.state.isUserLoggedIn){
+            return <AlbumList  style={{flex: 1}} />
+         }else{
+            return <Auth style={{flex: 1}} />
+         }
+
+        //  switch(this.state.isUserLoggedIn){
+        //      case true:
+        //      return <AlbumList  style={{flex: 1}} />
+        //      break;
+        //      case false: 
+        //      return <Auth style={{flex: 1}} />
+        //      break;
+        //      default:
+        //      return <Spinner />
+
+        //  }
+        
+ 
+     }
+
+     signOut = () =>{
+         console.log("sign out");
+         firebase.auth().signOut();
      }
       
      render(){
+       
+
         return (
             <View style={{flex: 1}}>
-                <Header viewType={this.listViewType.bind(this)} headerText={'Albums!'}  />
+                <Header signOut={this.signOut} viewType={this.listViewType.bind(this)} headerText={'Albums!'}  />
                 {/* <FlexboxPractice /> */}
-                <NavigatorIOS 
+                
+                {this.renderView()}
+
+                {/* <NavigatorIOS 
                     initialRoute={{
-                        component: Auth,
+                        component: currentView,
                         title: "Album List!",
+                        passProps: { isUserLoggedIn: this.isUserLoggedIn },
                         // viewType: this.state.listViewType
                     }} 
                     style={{flex: 1}}
-                />
+                /> */}
                 
             </View>
         );

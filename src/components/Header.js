@@ -19,6 +19,10 @@ class Header extends Component {
         this.props.viewType((this.state.viewType = !this.state.viewType) ? 'gridView' : 'listView');
     }
 
+    signOut = () =>{
+        this.props.signOut();
+    }
+
     render(){
         const { viewStyle, textStyle ,buttonStyle} = styles;
         
@@ -26,6 +30,7 @@ class Header extends Component {
             <View style={viewStyle}>
                  <Text style={textStyle}>{this.props.headerText}</Text>
                  <Button buttonText="Grid View" onPress={this.showGrildView} style={buttonStyle}>Filter Item</Button>
+                 <Button buttonText="Sign Out" onPress={this.signOut} style={buttonStyle}>Filter Item</Button>
             </View>
         );
     }
