@@ -42,24 +42,24 @@ import {Spinner} from "./src/components/common";
          console.log("user state",this.state)
 
          if(this.state.isUserLoggedIn){
-            return <AlbumList  style={{flex: 1}} />
+            return this.routeToListing();
          }else{
             return <Auth style={{flex: 1}} />
-         }
-
-        //  switch(this.state.isUserLoggedIn){
-        //      case true:
-        //      return <AlbumList  style={{flex: 1}} />
-        //      break;
-        //      case false: 
-        //      return <Auth style={{flex: 1}} />
-        //      break;
-        //      default:
-        //      return <Spinner />
-
-        //  }
-        
+         }       
  
+     }
+     
+     routeToListing(){
+        return (
+            <NavigatorIOS 
+            initialRoute={{
+                component: AlbumList,
+                title: "Album List!",
+                // viewType: this.state.listViewType
+            }} 
+            style={{flex: 1}}
+        /> 
+        );
      }
 
      signOut = () =>{
